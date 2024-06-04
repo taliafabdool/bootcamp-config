@@ -67,7 +67,17 @@ bootstrap:
               - cdf-group: cdf:all:read
                 idp-source-id: bb4a6c03-726b-4dbf-8526-d63607fd2f71 # for the AAD Group to be matched to cdf-group
                 idp-source-name: bootcamp-49-test-all-read # i.e. bootcamp-01-test-all-read
-
+        - cdf-project: cdf-bootcamp-49-prod # i.e. bootcamp-01-test
+          mappings:
+              - cdf-group: cdf:root
+                idp-source-id: 4d4a162f-2e40-4198-a37d-a3d2a6bcc625
+                idp-source-name: bootcamp-49-prod-admin
+              - cdf-group: cdf:all:owner
+                idp-source-id: 11fd9bb1-2e1b-4b3b-b746-2950c3f60bbc # for the AAD Group to be matched to cdf-group
+                idp-source-name: bootcamp-49-prod-all-owner # i.e. bootcamp-01-test-all-owner
+              - cdf-group: cdf:all:read
+                idp-source-id: 82f903f7-f394-4517-9c74-f0528d96293e # for the AAD Group to be matched to cdf-group
+                idp-source-name: bootcamp-49-prod-all-read # i.e. bootcamp-01-test-all-read
 
     namespaces:
         # Typical config will have a namespace for data sources ("src") and a namespace for use cases ("uc")
@@ -80,9 +90,9 @@ bootstrap:
                 description: Data from SAP # HINT
         # HINT: Add another namespace below
               - node-name: src:002:opcua
-                description: Data from SAP # HINT
+                description: Data from OPCUA # HINT
 
-          ns-name: uc
+        - ns-name: uc
           description: Use cases representing the data/products
 
           # Description names will normally follow src:001:srcname or uc:001:usecasename naming convention
@@ -90,9 +100,9 @@ bootstrap:
               - node-name: uc:001:oee
                 description: Use case 001 Over all Equipment effectiveness
                 shared-access:
-                  read:
-                    - node-name: src:001:sap
-                    - node-name: src:002:opcua
+                    read:
+                        - node-name: src:001:sap
+                        - node-name: src:002:opcua
 
 
 # de-facto standards for CDF CogniteClient and logger configuration.
